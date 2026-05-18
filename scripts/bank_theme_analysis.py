@@ -76,7 +76,7 @@ for bank in banks:
     bank_reviews = df[df["bank"] == bank]
 
     vectorizer = TfidfVectorizer(
-        max_features=15,
+        max_features=5,
         ngram_range=(1, 2)
     )
 
