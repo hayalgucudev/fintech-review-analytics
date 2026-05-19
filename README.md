@@ -79,6 +79,23 @@ Final dataset columns:
 
 ---
 
+
+---
+
+# ADD WORKFLOW SECTION
+
+Paste:
+
+```markdown id="mjlwm1"
+## Workflow
+
+1. Scrape Google Play Store reviews
+2. Preprocess and clean review data
+3. Perform sentiment analysis
+4. Extract themes using TF-IDF
+5. Store processed data in PostgreSQL
+6. Generate visual analytics and business insights
+
 ## Technologies Used
 
 - Python
