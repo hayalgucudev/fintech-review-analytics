@@ -98,6 +98,25 @@ GitHub Actions was configured to automatically install dependencies and validate
 
 ---
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <your-repository-link>
+
+
+## Results
+
+The project successfully:
+
+- Collected and processed customer reviews
+- Performed transformer-based sentiment analysis
+- Identified recurring customer issues
+- Generated comparative analytics across banks
+- Integrated PostgreSQL storage
+- Produced actionable business recommendations
+
 ## Limitations
 
 - Google Play review availability varies by application.
