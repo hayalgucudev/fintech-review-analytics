@@ -1,97 +1,55 @@
+import logging
 import pandas as pd
-import re
-import nltk
-
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-nltk.download("punkt")
-nltk.download("punkt_tab")
-nltk.download("stopwords")
+logging.basicConfig(level=logging.INFO)
 
+try:
 
-# -----------------------------
-# Load dataset
-# -----------------------------
-df = pd.read_csv("data/raw/bank_reviews_sentiment.csv")
+    df = pd.read_csv(
+        "data/processed/bank_reviews_sentiment.csv"
+    )
 
-print("Dataset loaded successfully.")
-print(df.shape)
+    # Create cleaned_review if missing
+    if "cleaned_review" not in df.columns:
 
+        df["cleaned_review"] = (
+            df["review"]
+            .astype(str)
+            .str.lower()
+        )
 
-# -----------------------------
-# Stopwords
-# -----------------------------
-stop_words = set(stopwords.words("english"))
+    vectorizer = TfidfVectorizer(
+        stop_words="english",
+        max_features=20
+    )
 
+    tfidf_matrix = vectorizer.fit_transform(
+        df["cleaned_review"]
+    )
 
-# -----------------------------
-# Text cleaning function
-# -----------------------------
-def clean_text(text):
+    keywords = vectorizer.get_feature_names_out()
 
-    text = str(text).lower()
+    keywords_df = pd.DataFrame({
+        "keyword": keywords
+    })
 
-    # Remove URLs
-    text = re.sub(r"http\S+", "", text)
+    keywords_df.to_csv(
+        "data/outputs/tfidf_keywords.csv",
+        index=False
+    )
 
-    # Remove special characters
-    text = re.sub(r"[^a-zA-Z\s]", "", text)
+    logging.info(
+        "TF-IDF thematic analysis completed."
+    )
 
-    # Tokenize
-    tokens = word_tokenize(text)
+except FileNotFoundError:
 
-    # Remove stopwords
-    filtered_tokens = [
-        word for word in tokens
-        if word not in stop_words and len(word) > 2
-    ]
+    logging.error(
+        "Sentiment dataset not found."
+    )
 
-    return " ".join(filtered_tokens)
+except Exception as e:
 
-
-# -----------------------------
-# Apply cleaning
-# -----------------------------
-df["cleaned_review"] = df["review"].apply(clean_text)
-
-print("\nText cleaning completed.")
-
-
-# -----------------------------
-# TF-IDF Vectorizer
-# -----------------------------
-vectorizer = TfidfVectorizer(
-    max_features=30,
-    ngram_range=(1, 2)
-)
-
-X = vectorizer.fit_transform(df["cleaned_review"])
-
-
-# -----------------------------
-# Extract keywords
-# -----------------------------
-keywords = vectorizer.get_feature_names_out()
-
-print("\nTop Keywords and N-grams:\n")
-
-for keyword in keywords:
-    print(keyword)
-
-
-# -----------------------------
-# Save keywords
-# -----------------------------
-keywords_df = pd.DataFrame({
-    "keyword": keywords
-})
-
-keywords_df.to_csv(
-    "data/raw/tfidf_keywords.csv",
-    index=False
-)
-
-print("\nKeyword extraction completed.")
+    logging.error(e)
