@@ -79,15 +79,7 @@ Final dataset columns:
 
 ---
 
-
----
-
-# ADD WORKFLOW SECTION
-
-Paste:
-
-```markdown id="mjlwm1"
-## Workflow
+# WORKFLOW SECTION
 
 1. Scrape Google Play Store reviews
 2. Preprocess and clean review data
