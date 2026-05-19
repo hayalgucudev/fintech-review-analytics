@@ -68,3 +68,11 @@ print(df.head())
 df.to_csv("data/raw/bank_reviews_cleaned.csv", index=False)
 
 print("\nCleaned dataset saved successfully.")
+
+"""
+Preprocess customer reviews by:
+- removing punctuation
+- converting text to lowercase
+- removing stopwords
+- preparing text for sentiment analysis
+"""

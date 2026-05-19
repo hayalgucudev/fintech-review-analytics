@@ -1,19 +1,11 @@
 import pandas as pd
 from transformers import pipeline
 
-
-# -----------------------------
-# Load cleaned dataset
-# -----------------------------
-df = pd.read_csv("data/raw/bank_reviews_cleaned.csv")
+df = pd.read_csv("data/processed/bank_reviews_cleaned.csv")
 
 print("Dataset loaded successfully.")
 print(df.shape)
 
-
-# -----------------------------
-# Load sentiment analysis model
-# -----------------------------
 sentiment_pipeline = pipeline(
     "sentiment-analysis",
     model="distilbert-base-uncased-finetuned-sst-2-english"
@@ -21,17 +13,12 @@ sentiment_pipeline = pipeline(
 
 print("\nDistilBERT model loaded.")
 
-
-# -----------------------------
-# Sentiment classification
-# -----------------------------
 sentiment_labels = []
 sentiment_scores = []
 
 
 for review in df["review"]:
 
-    # Handle empty or invalid reviews
     if pd.isna(review) or str(review).strip() == "":
         sentiment_labels.append("neutral")
         sentiment_scores.append(0.0)
@@ -43,7 +30,6 @@ for review in df["review"]:
         label = result["label"].lower()
         score = result["score"]
 
-        # Create neutral category for low confidence
         if score < 0.60:
             label = "neutral"
 
@@ -55,25 +41,12 @@ for review in df["review"]:
 
         sentiment_labels.append("neutral")
         sentiment_scores.append(0.0)
-
-
-# -----------------------------
-# Add results to dataframe
-# -----------------------------
 df["sentiment_label"] = sentiment_labels
 df["sentiment_score"] = sentiment_scores
 
-
-# -----------------------------
-# Display summary
-# -----------------------------
 print("\nSentiment Distribution:")
 print(df["sentiment_label"].value_counts())
 
-
-# -----------------------------
-# Save results
-# -----------------------------
-df.to_csv("data/raw/bank_reviews_sentiment.csv", index=False)
+df.to_csv("data/processed/bank_reviews_sentiment.csv", index=False)
 
 print("\nSentiment analysis completed successfully.")

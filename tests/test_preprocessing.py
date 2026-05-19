@@ -1,18 +1,9 @@
 import pytest
 import pandas as pd
 
-
-# -----------------------------
-# Sample preprocessing function
-# -----------------------------
 def remove_duplicates(df):
 
     return df.drop_duplicates()
-
-
-# -----------------------------
-# Test duplicate removal
-# -----------------------------
 def test_remove_duplicates():
 
     data = {
@@ -31,9 +22,6 @@ def test_remove_duplicates():
     assert len(cleaned_df) == 2
 
 
-# -----------------------------
-# Test missing values
-# -----------------------------
 def test_missing_values():
 
     data = {

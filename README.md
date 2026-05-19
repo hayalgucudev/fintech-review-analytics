@@ -4,15 +4,31 @@ Customer Experience Analytics for Ethiopian Banking Apps
 
 ## Project Overview
 
-This project analyzes customer reviews from Ethiopian banking applications on the Google Play Store. The objective is to extract customer sentiment, identify recurring themes, and generate business insights that can help improve mobile banking experiences.
+This project analyzes customer reviews from Ethiopian banking applications on Google Play Store to identify customer satisfaction drivers, pain points, and improvement opportunities.
 
-The analysis focuses on three Ethiopian banks:
+The project combines:
+- Data scraping
+- Data preprocessing
+- Sentiment analysis
+- Thematic analysis
+- PostgreSQL database engineering
+- Business insights visualization
+
+---
+
+## Objectives
+
+- Scrape customer reviews from banking applications
+- Analyze customer sentiment
+- Extract recurring themes and keywords
+- Store structured review data in PostgreSQL
+- Generate business recommendations for each bank
+
+## Banks Included
 
 - Commercial Bank of Ethiopia (CBE)
 - Bank of Abyssinia (BOA)
 - Dashen Bank
-
----
 
 ## Project Structure
 
@@ -31,6 +47,32 @@ fintech-review-analytics/
 ```
 
 ---
+
+
+---
+
+# Database Setup
+
+```markdown
+## PostgreSQL Database Setup
+
+Create PostgreSQL database
+
+
+---
+
+# Project Pipeline
+
+```markdown
+## Project Pipeline
+
+1. Scrape reviews from Google Play Store
+2. Preprocess and clean review text
+3. Perform sentiment analysis
+4. Extract TF-IDF keywords
+5. Categorize themes
+6. Store data in PostgreSQL
+7. Generate visualizations and business insights
 
 ## Task 1: Data Collection and Preprocessing
 
