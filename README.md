@@ -79,6 +79,23 @@ Final dataset columns:
 
 ---
 
+
+---
+
+# ADD WORKFLOW SECTION
+
+Paste:
+
+```markdown id="mjlwm1"
+## Workflow
+
+1. Scrape Google Play Store reviews
+2. Preprocess and clean review data
+3. Perform sentiment analysis
+4. Extract themes using TF-IDF
+5. Store processed data in PostgreSQL
+6. Generate visual analytics and business insights
+
 ## Technologies Used
 
 - Python
@@ -97,6 +114,25 @@ Final dataset columns:
 GitHub Actions was configured to automatically install dependencies and validate the project workflow on every push to the `main` branch.
 
 ---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <your-repository-link>
+
+
+## Results
+
+The project successfully:
+
+- Collected and processed customer reviews
+- Performed transformer-based sentiment analysis
+- Identified recurring customer issues
+- Generated comparative analytics across banks
+- Integrated PostgreSQL storage
+- Produced actionable business recommendations
 
 ## Limitations
 
